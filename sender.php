@@ -9,9 +9,8 @@ $phoneNumber = $_POST['selectedNumber'];
 if($sendOption == 'allStudent'){
 	$result = $db->connect()->query("SELECT * FROM `studdata`");
 	while($row = $result->fetch_object()){
-		send($message, '+63'. $row->phone);
-		sleep(10);
-		// ini_set('max_execution_time', 30000);
+		semysms('+63'.$row->phone, $message);
+		ini_set('max_execution_time', 30000);
 	}
 }
 if($sendOption == 'allBeed'){
@@ -21,10 +20,13 @@ if($sendOption == 'allBsed'){
 	itexmo('09385784607', 'Hello World');
 }
 if($sendOption == 'allBat'){
-	semysms('+63'.'9385784607', 'Hello World');
+	
 }
 if($sendOption == 'allBse'){
 	
+}
+if($sendOption == 'oneStudent'){
+	semysms('+63'.$phoneNumber, $message);
 }
 
 
@@ -92,7 +94,7 @@ function semysms($number,$message){
 	$url = "https://semysms.net/api/3/sms.php"; //Url address for sending SMS
 	$phone = $number; // Phone number
 	$msg = $message;  // Message
-	$device = '1';  //  Device code
+	$device = '134536';  //  Device code
 	$token = 'af29795d74d7517f2dffdfe75423e00b';  //  Your token (secret)
    
 	$data = array(
